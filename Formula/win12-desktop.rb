@@ -1,21 +1,20 @@
 class Win12Desktop < Formula
-  desc "Win12 桌面端，基于 Tauri 封装"
+  desc "Win12 Desktop"
   homepage "https://github.com/win12-online/win12-desktop"
   license "EPL-2.0"
-  version "0.2.6"
+  version "0.2.6"  # ***
 
   if OS.mac?
     url "https://github.com/win12-online/win12-desktop.git",
         tag:      "v#{version}",
-        revision: "067f3c8304ae4b6799fc929d5ee4385a54e86c44"
+        revision: "067f3c8304ae4b6799fc929d5ee4385a54e86c44"  # ***
 
     depends_on "node" => :build
     depends_on "pnpm" => :build
     depends_on "rust" => :build
   elsif OS.linux?
-    appimage_name = "Win12_#{version}_amd64.AppImage"
-    url "https://github.com/win12-online/win12-desktop/releases/download/v#{version}/#{appimage_name}"
-    sha256 "5539858a4f619a39033f9063f7f59e7f943fce047ab449f612d4f7e422b76085"
+    url "https://github.com/win12-online/win12-desktop/releases/download/v#{version}/Win12_#{version}_amd64.AppImage"
+    sha256 "5539858a4f619a39033f9063f7f59e7f943fce047ab449f612d4f7e422b76085"  # ***
   end
 
   def install
@@ -33,6 +32,7 @@ class Win12Desktop < Formula
 
       bin.install "src-tauri/target/release/win12-desktop" => "win12"
     elsif OS.linux?
+      appimage_name = "Win12_#{version}_amd64.AppImage"
       libexec.install appimage_name => "Win12.AppImage"
       chmod 0755, libexec/"Win12.AppImage"
 
@@ -55,4 +55,3 @@ class Win12Desktop < Formula
     url :stable
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
-end
