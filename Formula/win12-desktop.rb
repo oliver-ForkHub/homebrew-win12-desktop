@@ -52,6 +52,6 @@ class Win12Desktop < Formula
   end
 
   livecheck do
-    url "https://github.com/win12-online/win12-desktop"
+    url :homepage
     strategy :github_latest
   end
